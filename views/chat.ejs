@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord 2 | #<%= channel.name %></title>
+    <link rel="icon" href="/images/Discord-Emblem.png" type="image/png">
+    <link rel="stylesheet" href="/css/xoIoIUh6IIT8jw.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="server-icons">
+            <% guilds.forEach(guild => { %>
+                <a class="server-icon box" href="/channels/<%= guild.id %>/1">
+                    <% if(guild.gif === true) { %>
+                        <img src="/images/guilds/<%= guild.icon %>.gif" >
+                    <% } else { %>
+                        <img src="/images/guilds/<%= guild.icon %>.png" >
+                    <% } %>
+ 
+                    </a>
+            <% }) %>
+        </div>
+        <div class="box-chat">
+            <div class="channels">
+                <div class="server-name-box"><%= guild.name %></div>
+                <div class="all-channels">
+                    <% guild.channels.forEach(channel => { %>
+                        <div class="channel">
+                            <% if(channel.type === 0) {%>
+                            <img src="/images/channels/text.png" >
+                            <% } else { %>
+                                <img src="/images/channels/voice.png" >
+                            <% } %>
+                            <span><%= channel.name %></span>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+            <div class="chat">
+                <div class="sub-caixa-1" id="sub-caixa-1">
+                    <% messages.forEach(message => { %>
+                        <div class="message-box">
+                            <div class="message-box-user-icon">
+                                <% if(message.user.icon) { %>
+                                    <img src="<%= message.user.icon %>">
+                                <% } %>
+                            </div>
+                            <div class="message-box-chat">
+                                <div class="message-box-user-username">
+                                    <%= message.user.username %>
+                                    <% if(message.user.bot) { %> 
+                                        <img src="/images/bot.png">
+                                    <% } %>
+                                </div>
+                                <div class="message-box-user-message">
+                                    <%= message.content %>
+                                    
+                                    <% if(message.attachment) { %>
+                                        <img src="<%= message.attachment %>">
+                                    <% } %>
+                                    <!-- <div class="embed">É um  de texto É um fato cÉ um fato conhecido de todos que um leitor se distrairá com o cotrairá com o conteúdo de texto onhecido de todos que um leitor se distrairá com o conteúdo de texto </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                   
+                    
+                </div>
+
+                    <div class="sub-caixa-2">
+                        <img id="file-input-label" for="file-input" src="/images/sinal-de-mais.png">
+                        <input id="text-input-label" placeholder="Conversar em #<%= channel.name %>">
+                        <div class="div-de-5px">
+                            Você está limitado por enviar mensagens rápido de mais! 
+                        </div>
+                    </div>
+                    
+                </div>
+       
+        </div>
+        <div class="server-members">
+            <% guild.members.forEach( user => { %>
+                <div class="member">
+                    <img  src="/images/users/<%= user.icon %>.png" >
+                    <span><%= user.username %></span>
+                </div>
+            <% }) %>
+        </div>
+        <input type="file" accept="image/*" id="file-input" style="display: none"/>
+    </div>
+
+        <a href='https://github.com/Developer-s-Study' target="_blank" class="overlay-box">
+            @Developer's Study
+            <div class="div-de-6px"></div>
+        </a>
+
+        <div class="preloader">
+            <div class="loader"></div>
+        </div>
+
+    <script src="/js/9eL0ncNM220sY8u4OlpDbQ.js"></script>
+</body>
+</html>
+
+
